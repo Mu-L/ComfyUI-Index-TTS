@@ -1,0 +1,90 @@
+.\ComfyUI\models\IndexTTS-2>tree /f
+卷 系统 的文件夹 PATH 列表
+卷序列号为 001C-C009
+C:.
+│  .gitattributes
+│  bpe.model
+│  campplus_cn_common.bin
+│  config.yaml
+│  feat1.pt
+│  feat2.pt
+│  gpt.pth
+│  README.md
+│  s2mel.pth
+│  wav2vec2bert_stats.pt
+│
+├─bigvgan
+│  └─bigvgan_v2_22khz_80band_256x
+│          .gitattributes
+│          .gitignore
+│          activations.py
+│          bigvgan.py
+│          bigvgan_discriminator_optimizer.pt
+│          bigvgan_discriminator_optimizer_3msteps.pt
+│          bigvgan_generator.pt
+│          bigvgan_generator_3msteps.pt
+│          config.json
+│          env.py
+│          LICENSE
+│          meldataset.py
+│          README.md
+│          utils.py
+│
+├─hf_cache
+├─qwen0.6bemo4-merge
+│      added_tokens.json
+│      chat_template.jinja
+│      config.json
+│      generation_config.json
+│      merges.txt
+│      model.safetensors
+│      Modelfile
+│      special_tokens_map.json
+│      tokenizer.json
+│      tokenizer_config.json
+│      vocab.json
+│
+├─semantic_codec
+│      model.safetensors
+│
+└─w2v-bert-2.0
+        .gitattributes
+        config.json
+        conformer_shaw.pt
+        model.safetensors
+        preprocessor_config.json
+        README.md
+
+
+
+模型从哪里下下载到哪里（全部放到 .\ComfyUI\models\IndexTTS-2\ 路径下）：
+
+1) semantic codec（MaskGCT 语义编码器）
+   - 下载地址（页面）：https://huggingface.co/amphion/MaskGCT/tree/main/semantic_codec
+   - 直接文件链接：https://huggingface.co/amphion/MaskGCT/resolve/main/semantic_codec/model.safetensors?download=true
+   - 本地放置：semantic_codec\model.safetensors
+
+2) CampPlus 说话人嵌入
+   - 下载地址（页面）：https://huggingface.co/funasr/campplus
+   - 直接文件链接：https://huggingface.co/funasr/campplus/resolve/main/campplus_cn_common.bin?download=true
+   - 本地放置：campplus_cn_common.bin
+
+3) Wav2Vec2Bert 特征提取器（facebook/w2v-bert-2.0）
+   - 页面：https://huggingface.co/facebook/w2v-bert-2.0
+   - 本地放置（离线优先）：w2v-bert-2.0\（整个仓库文件夹，包含 config.json、model.safetensors、preprocessor_config.json 等）
+   - 若未放置本地文件夹，将自动下载到 hf 缓存：.\ComfyUI\models\IndexTTS-2\hf_cache\
+
+4) BigVGAN 声码器
+   - 名称读取自 config.yaml 的 vocoder.name（示例：nvidia/BigVGAN）
+   - 页面示例：https://huggingface.co/nvidia/bigvgan_v2_22khz_80band_256x/tree/main
+   - 建议：提前将对应模型完整缓存到 bigvgan\ 内
+
+5) 其他本地直读文件（需与 config.yaml 一致）：
+   - gpt.pth（cfg.gpt_checkpoint）
+   - s2mel.pth（cfg.s2mel_checkpoint）
+   - bpe.model（cfg.dataset.bpe_model）
+   - wav2vec2bert_stats.pt（cfg.w2v_stat）
+   - repcodec.json 或其他语义编码配置（cfg.semantic_codec）
+   - emo_matrix（cfg.emo_matrix）
+   - spk_matrix（cfg.spk_matrix）
+   - qwen0.6bemo4-merge\（cfg.qwen_emo_path 指定目录）
