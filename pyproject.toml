@@ -10,6 +10,12 @@ Repository = "https://github.com/chenpipi0807/ComfyUI-Index-TTS"
 #  Used by Comfy Registry https://comfyregistry.org
 
 [tool.comfy]
-PublisherId = ""
-DisplayName = "ComfyUI-Index-TTS"
-Icon = ""
+ # NOTE: Leaving PublisherId blank is fine for normal Git pushes.
+ # When you really want to publish to Comfy Registry, fill it with your real Publisher ID.
+ PublisherId = ""
+ # Machine name (slug). Optional but recommended by registry.
+ Name = "comfyui-index-tts"
+ # Human-readable display name.
+ DisplayName = "ComfyUI-Index-TTS"
+ # Icon can be a URL or a relative path in the repo. Placeholder keeps checks relaxed.
+ Icon = "assets/icon.png"
